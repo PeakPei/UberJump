@@ -38,6 +38,12 @@
     // Remove this star
     [self removeFromParent];
     
+    // Award score
+    [GameState sharedInstance].score += (_starType == STAR_NORMAL ? 20 : 100);
+    
+    // Award stars
+    [GameState sharedInstance].stars += (_starType == STAR_NORMAL ? 1 : 5);
+    
     // The HUD needs updating to show the new stars and score
     return YES;
 }

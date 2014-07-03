@@ -43,6 +43,9 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     // Labels for score and stars
     SKLabelNode *_lblScore;
     SKLabelNode *_lblStars;
+    
+    // Max y reached by player
+    int _maxPlayerY;
 }
 @end
 
@@ -52,6 +55,10 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
 {
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+        
+        // Reset
+        _maxPlayerY = 80;
+        
         // Create the game nodes
         // Background
         _backgroundNode = [self createBackgroundNode];
@@ -331,6 +338,9 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     // Update the HUD if necessary
     if (updateHUD) {
         // 4 TODO: Update HUD in Part 2
+        [_lblStars setText:[NSString stringWithFormat:@"X %d", [GameState sharedInstance].stars]];
+        [_lblScore setText:[NSString stringWithFormat:@"%d", [GameState sharedInstance].score]];
+
     }
 }
 
@@ -361,6 +371,26 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
 }
 
 - (void) update:(CFTimeInterval)currentTime {
+    
+    // New max height ?
+    // 1
+    if ((int)_player.position.y > _maxPlayerY) {
+        // 2
+        [GameState sharedInstance].score += (int)_player.position.y - _maxPlayerY;
+        // 3
+        _maxPlayerY = (int)_player.position.y;
+        // 4
+        [_lblScore setText:[NSString stringWithFormat:@"%d", [GameState sharedInstance].score]];
+    }
+    
+    // Remove game objects that have passed by
+    [_foregroundNode enumerateChildNodesWithName:@"NODE_PLATFORM" usingBlock:^(SKNode *node, BOOL *stop) {
+        [((PlatformNode *)node) checkNodeRemoval:_player.position.y];
+    }];
+    [_foregroundNode enumerateChildNodesWithName:@"NODE_STAR" usingBlock:^(SKNode *node, BOOL *stop) {
+        [((StarNode *)node) checkNodeRemoval:_player.position.y];
+    }];
+    
     // Calculate player y offset
     if (_player.position.y > 200.0f) {
         _backgroundNode.position = CGPointMake(0.0f, -((_player.position.y - 200.0f)/10));
