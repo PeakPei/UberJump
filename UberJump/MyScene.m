@@ -17,6 +17,8 @@
     SKNode *_hudNode;
     // Player
     SKNode *_player;
+    // Tap To Start node
+    SKSpriteNode *_tapToStartNode;
 }
 @end
 
@@ -38,6 +40,13 @@
         [_foregroundNode addChild:_player];
         // Add some gravity
         self.physicsWorld.gravity = CGVectorMake(0.0f, -2.0f);
+        // HUD
+        _hudNode = [SKNode node];
+        [self addChild:_hudNode];
+        // Tap to Start
+        _tapToStartNode = [SKSpriteNode spriteNodeWithImageNamed:@"TapToStart"];
+        _tapToStartNode.position = CGPointMake(160, 180.0f);
+        [_hudNode addChild:_tapToStartNode];
         
     }
     return self;
@@ -78,7 +87,7 @@
     // 1
     playerNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:sprite.size.width/2];
     // 2
-    playerNode.physicsBody.dynamic = YES;
+    playerNode.physicsBody.dynamic = NO;
     // 3
     playerNode.physicsBody.allowsRotation = NO;
     // 4
