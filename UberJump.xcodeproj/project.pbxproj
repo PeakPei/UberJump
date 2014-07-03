@@ -69,6 +69,7 @@
 		EAD28E1F1965C96A0045DEDA /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EAD28DF41965C96A0045DEDA /* Background@2x.png */; };
 		EAD28E221965CB880045DEDA /* GameObjectNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E211965CB880045DEDA /* GameObjectNode.m */; };
 		EAD28E251965CBEC0045DEDA /* StarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E241965CBEC0045DEDA /* StarNode.m */; };
+		EAD28E271965CF920045DEDA /* StarPing.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAD28E261965CF920045DEDA /* StarPing.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		EAD28E211965CB880045DEDA /* GameObjectNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObjectNode.m; sourceTree = "<group>"; };
 		EAD28E231965CBEC0045DEDA /* StarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarNode.h; sourceTree = "<group>"; };
 		EAD28E241965CBEC0045DEDA /* StarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarNode.m; sourceTree = "<group>"; };
+		EAD28E261965CF920045DEDA /* StarPing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StarPing.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 		EAD28D941964D1890045DEDA /* UberJump */ = {
 			isa = PBXGroup;
 			children = (
+				EAD28E261965CF920045DEDA /* StarPing.wav */,
 				EAD28DC81965C96A0045DEDA /* UberJumpGraphics */,
 				EAD28D9D1964D1890045DEDA /* AppDelegate.h */,
 				EAD28D9E1964D1890045DEDA /* AppDelegate.m */,
@@ -395,6 +398,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD28E271965CF920045DEDA /* StarPing.wav in Resources */,
 				EAD28E0B1965C96A0045DEDA /* Background11.png in Resources */,
 				EAD28E051965C96A0045DEDA /* Background08.png in Resources */,
 				EAD28E1C1965C96A0045DEDA /* Background19@2x.png in Resources */,
