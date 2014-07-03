@@ -99,4 +99,22 @@
     return playerNode;
 }
 
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // 1
+    // If we're already playing, ignore touches
+    if (_player.physicsBody.dynamic) return;
+    
+    // 2
+    // Remove the Tap to Start node
+    [_tapToStartNode removeFromParent];
+    
+    // 3
+    // Start the player by putting them into the physics simulation
+    _player.physicsBody.dynamic = YES;
+    // 4
+    [_player.physicsBody applyImpulse:CGVectorMake(0.0f, 20.0f)];
+}
+
+
 @end
