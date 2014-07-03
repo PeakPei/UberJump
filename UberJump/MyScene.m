@@ -8,6 +8,7 @@
 
 #import "MyScene.h"
 #import "StarNode.h"
+#import "PlatformNode.h"
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     CollisionCategoryPlayer   = 0x1 << 0,
@@ -43,6 +44,10 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         // Foreground
         _foregroundNode = [SKNode node];
         [self addChild:_foregroundNode];
+        
+        // Add a platform
+        PlatformNode *platform = [self createPlatformAtPosition:CGPointMake(160, 320) ofType:PLATFORM_NORMAL];
+        [_foregroundNode addChild:platform];
         
         // Add a star
         StarNode *star = [self createStarAtPosition:CGPointMake(160, 220) ofType:STAR_SPECIAL];
@@ -172,6 +177,32 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     node.physicsBody.dynamic = NO;
     
     node.physicsBody.categoryBitMask = CollisionCategoryStar;
+    node.physicsBody.collisionBitMask = 0;
+    
+    return node;
+}
+
+- (PlatformNode *) createPlatformAtPosition:(CGPoint)position ofType:(PlatformType)type
+{
+    // 1
+    PlatformNode *node = [PlatformNode node];
+    [node setPosition:position];
+    [node setName:@"NODE_PLATFORM"];
+    [node setPlatformType:type];
+    
+    // 2
+    SKSpriteNode *sprite;
+    if (type == PLATFORM_BREAK) {
+        sprite = [SKSpriteNode spriteNodeWithImageNamed:@"PlatformBreak"];
+    } else {
+        sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Platform"];
+    }
+    [node addChild:sprite];
+    
+    // 3
+    node.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:sprite.size];
+    node.physicsBody.dynamic = NO;
+    node.physicsBody.categoryBitMask = CollisionCategoryPlatform;
     node.physicsBody.collisionBitMask = 0;
     
     return node;

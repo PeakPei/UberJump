@@ -70,6 +70,7 @@
 		EAD28E221965CB880045DEDA /* GameObjectNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E211965CB880045DEDA /* GameObjectNode.m */; };
 		EAD28E251965CBEC0045DEDA /* StarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E241965CBEC0045DEDA /* StarNode.m */; };
 		EAD28E271965CF920045DEDA /* StarPing.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAD28E261965CF920045DEDA /* StarPing.wav */; };
+		EAD28E2A1965D03B0045DEDA /* PlatformNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E291965D03B0045DEDA /* PlatformNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,8 @@
 		EAD28E231965CBEC0045DEDA /* StarNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarNode.h; sourceTree = "<group>"; };
 		EAD28E241965CBEC0045DEDA /* StarNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarNode.m; sourceTree = "<group>"; };
 		EAD28E261965CF920045DEDA /* StarPing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StarPing.wav; sourceTree = "<group>"; };
+		EAD28E281965D03B0045DEDA /* PlatformNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformNode.h; sourceTree = "<group>"; };
+		EAD28E291965D03B0045DEDA /* PlatformNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 				EAD28E211965CB880045DEDA /* GameObjectNode.m */,
 				EAD28E231965CBEC0045DEDA /* StarNode.h */,
 				EAD28E241965CBEC0045DEDA /* StarNode.m */,
+				EAD28E281965D03B0045DEDA /* PlatformNode.h */,
+				EAD28E291965D03B0045DEDA /* PlatformNode.m */,
 			);
 			path = UberJump;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD28E2A1965D03B0045DEDA /* PlatformNode.m in Sources */,
 				EAD28E221965CB880045DEDA /* GameObjectNode.m in Sources */,
 				EAD28DA81964D1890045DEDA /* MyScene.m in Sources */,
 				EAD28DA51964D1890045DEDA /* ViewController.m in Sources */,
