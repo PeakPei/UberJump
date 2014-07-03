@@ -23,10 +23,15 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     SKNode *_midgroundNode;
     SKNode *_foregroundNode;
     SKNode *_hudNode;
+    
     // Player
     SKNode *_player;
+    
     // Tap To Start node
     SKSpriteNode *_tapToStartNode;
+    
+    // Height at which level ends
+    int _endLevelY;
 }
 @end
 
@@ -45,9 +50,37 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         _foregroundNode = [SKNode node];
         [self addChild:_foregroundNode];
         
-        // Add a platform
-        PlatformNode *platform = [self createPlatformAtPosition:CGPointMake(160, 320) ofType:PLATFORM_NORMAL];
-        [_foregroundNode addChild:platform];
+        // Load the level
+        NSString *levelPlist = [[NSBundle mainBundle] pathForResource: @"Level01" ofType: @"plist"];
+        NSDictionary *levelData = [NSDictionary dictionaryWithContentsOfFile:levelPlist];
+        
+        // Height at which the player ends the level
+        _endLevelY = [levelData[@"EndY"] intValue];
+        
+            // Add a platform
+            //PlatformNode *platform = [self createPlatformAtPosition:CGPointMake(160, 320) ofType:PLATFORM_NORMAL];
+            //[_foregroundNode addChild:platform];
+        // Add the platforms
+        NSDictionary *platforms = levelData[@"Platforms"];
+        NSDictionary *platformPatterns = platforms[@"Patterns"];
+        NSArray *platformPositions = platforms[@"Positions"];
+        for (NSDictionary *platformPosition in platformPositions) {
+            CGFloat patternX = [platformPosition[@"x"] floatValue];
+            CGFloat patternY = [platformPosition[@"y"] floatValue];
+            NSString *pattern = platformPosition[@"pattern"];
+            
+            // Look up the pattern
+            NSArray *platformPattern = platformPatterns[pattern];
+            for (NSDictionary *platformPoint in platformPattern) {
+                CGFloat x = [platformPoint[@"x"] floatValue];
+                CGFloat y = [platformPoint[@"y"] floatValue];
+                PlatformType type = [platformPoint[@"type"] intValue];
+                
+                PlatformNode *platformNode = [self createPlatformAtPosition:CGPointMake(x + patternX, y + patternY)
+                                                                     ofType:type];
+                [_foregroundNode addChild:platformNode];
+            }
+        }
         
         // Add a star
         StarNode *star = [self createStarAtPosition:CGPointMake(160, 220) ofType:STAR_SPECIAL];

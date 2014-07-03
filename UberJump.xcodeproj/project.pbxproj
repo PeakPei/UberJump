@@ -71,6 +71,7 @@
 		EAD28E251965CBEC0045DEDA /* StarNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E241965CBEC0045DEDA /* StarNode.m */; };
 		EAD28E271965CF920045DEDA /* StarPing.wav in Resources */ = {isa = PBXBuildFile; fileRef = EAD28E261965CF920045DEDA /* StarPing.wav */; };
 		EAD28E2A1965D03B0045DEDA /* PlatformNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E291965D03B0045DEDA /* PlatformNode.m */; };
+		EAD28E2C1965D1220045DEDA /* Level01.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAD28E2B1965D1220045DEDA /* Level01.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		EAD28E261965CF920045DEDA /* StarPing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = StarPing.wav; sourceTree = "<group>"; };
 		EAD28E281965D03B0045DEDA /* PlatformNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatformNode.h; sourceTree = "<group>"; };
 		EAD28E291965D03B0045DEDA /* PlatformNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatformNode.m; sourceTree = "<group>"; };
+		EAD28E2B1965D1220045DEDA /* Level01.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Level01.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 		EAD28D941964D1890045DEDA /* UberJump */ = {
 			isa = PBXGroup;
 			children = (
+				EAD28E2B1965D1220045DEDA /* Level01.plist */,
 				EAD28E261965CF920045DEDA /* StarPing.wav */,
 				EAD28DC81965C96A0045DEDA /* UberJumpGraphics */,
 				EAD28D9D1964D1890045DEDA /* AppDelegate.h */,
@@ -433,6 +436,7 @@
 				EAD28E0A1965C96A0045DEDA /* Background10@2x.png in Resources */,
 				EAD28E181965C96A0045DEDA /* Background17@2x.png in Resources */,
 				EAD28E161965C96A0045DEDA /* Background16@2x.png in Resources */,
+				EAD28E2C1965D1220045DEDA /* Level01.plist in Resources */,
 				EAD28E1F1965C96A0045DEDA /* Background@2x.png in Resources */,
 				EAD28E131965C96A0045DEDA /* Background15.png in Resources */,
 				EAD28E1E1965C96A0045DEDA /* Background20@2x.png in Resources */,
