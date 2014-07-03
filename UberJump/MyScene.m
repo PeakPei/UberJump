@@ -82,9 +82,29 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
             }
         }
         
-        // Add a star
-        StarNode *star = [self createStarAtPosition:CGPointMake(160, 220) ofType:STAR_SPECIAL];
-        [_foregroundNode addChild:star];
+            // Add a star
+            //StarNode *star = [self createStarAtPosition:CGPointMake(160, 220) ofType:STAR_SPECIAL];
+            //[_foregroundNode addChild:star];
+        // Add the stars
+        NSDictionary *stars = levelData[@"Stars"];
+        NSDictionary *starPatterns = stars[@"Patterns"];
+        NSArray *starPositions = stars[@"Positions"];
+        for (NSDictionary *starPosition in starPositions) {
+            CGFloat patternX = [starPosition[@"x"] floatValue];
+            CGFloat patternY = [starPosition[@"y"] floatValue];
+            NSString *pattern = starPosition[@"pattern"];
+            
+            // Look up the pattern
+            NSArray *starPattern = starPatterns[pattern];
+            for (NSDictionary *starPoint in starPattern) {
+                CGFloat x = [starPoint[@"x"] floatValue];
+                CGFloat y = [starPoint[@"y"] floatValue];
+                StarType type = [starPoint[@"type"] intValue];
+                
+                StarNode *starNode = [self createStarAtPosition:CGPointMake(x + patternX, y + patternY) ofType:type];
+                [_foregroundNode addChild:starNode];
+            }
+        }
         
         // Add the player
         _player = [self createPlayer];
