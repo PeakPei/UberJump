@@ -36,6 +36,8 @@
         // Add the player
         _player = [self createPlayer];
         [_foregroundNode addChild:_player];
+        // Add some gravity
+        self.physicsWorld.gravity = CGVectorMake(0.0f, -2.0f);
         
     }
     return self;
@@ -72,6 +74,18 @@
     
     SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Player"];
     [playerNode addChild:sprite];
+    
+    // 1
+    playerNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:sprite.size.width/2];
+    // 2
+    playerNode.physicsBody.dynamic = YES;
+    // 3
+    playerNode.physicsBody.allowsRotation = NO;
+    // 4
+    playerNode.physicsBody.restitution = 1.0f;
+    playerNode.physicsBody.friction = 0.0f;
+    playerNode.physicsBody.angularDamping = 0.0f;
+    playerNode.physicsBody.linearDamping = 0.0f;
     
     return playerNode;
 }
