@@ -45,7 +45,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         [self addChild:_foregroundNode];
         
         // Add a star
-        StarNode *star = [self createStarAtPosition:CGPointMake(160, 220)];
+        StarNode *star = [self createStarAtPosition:CGPointMake(160, 220) ofType:STAR_SPECIAL];
         [_foregroundNode addChild:star];
         
         // Add the player
@@ -144,7 +144,7 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     [_player.physicsBody applyImpulse:CGVectorMake(0.0f, 20.0f)];
 }
 
-- (StarNode *) createStarAtPosition:(CGPoint)position
+- (StarNode *) createStarAtPosition:(CGPoint)position ofType:(StarType)type
 {
     // 1
     StarNode *node = [StarNode node];
@@ -152,8 +152,17 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     [node setName:@"NODE_STAR"];
     
     // 2
-    SKSpriteNode *sprite;
+    /*SKSpriteNode *sprite;
     sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Star"];
+    [node addChild:sprite];*/
+    
+    [node setStarType:type];
+    SKSpriteNode *sprite;
+    if (type == STAR_SPECIAL) {
+        sprite = [SKSpriteNode spriteNodeWithImageNamed:@"StarSpecial"];
+    } else {
+        sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Star"];
+    }
     [node addChild:sprite];
     
     // 3
