@@ -9,6 +9,7 @@
 #import "MyScene.h"
 #import "StarNode.h"
 #import "PlatformNode.h"
+@import CoreMotion;
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     CollisionCategoryPlayer   = 0x1 << 0,
@@ -32,6 +33,12 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     
     // Height at which level ends
     int _endLevelY;
+    
+    // Motion manager for accelerometer
+    CMMotionManager *_motionManager;
+    
+    // Acceleration value from accelerometer
+    CGFloat _xAcceleration;
 }
 @end
 
@@ -123,6 +130,19 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         // HUD
         _hudNode = [SKNode node];
         [self addChild:_hudNode];
+        
+        // CoreMotion
+        _motionManager = [[CMMotionManager alloc] init];
+        // 1
+        _motionManager.accelerometerUpdateInterval = 0.2;
+        // 2
+        [_motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
+                                             withHandler:^(CMAccelerometerData  *accelerometerData, NSError *error) {
+                                                 // 3
+                                                 CMAcceleration acceleration = accelerometerData.acceleration;
+                                                 // 4
+                                                 _xAcceleration = (acceleration.x * 0.75) + (_xAcceleration * 0.25);
+                                             }];
         
         // Tap to Start
         _tapToStartNode = [SKSpriteNode spriteNodeWithImageNamed:@"TapToStart"];
@@ -315,6 +335,22 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         _midgroundNode.position = CGPointMake(0.0f, -((_player.position.y - 200.0f)/4));
         _foregroundNode.position = CGPointMake(0.0f, -(_player.position.y - 200.0f));
     }
+}
+
+- (void) didSimulatePhysics
+{
+    // 1
+    // Set velocity based on x-axis acceleration
+    _player.physicsBody.velocity = CGVectorMake(_xAcceleration * 400.0f, _player.physicsBody.velocity.dy);
+    
+    // 2
+    // Check x bounds
+    if (_player.position.x < -20.0f) {
+        _player.position = CGPointMake(340.0f, _player.position.y);
+    } else if (_player.position.x > 340.0f) {
+        _player.position = CGPointMake(-20.0f, _player.position.y);
+    }
+    return;
 }
 
 @end
