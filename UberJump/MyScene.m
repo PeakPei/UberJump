@@ -308,5 +308,13 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     return midgroundNode;	
 }
 
+- (void) update:(CFTimeInterval)currentTime {
+    // Calculate player y offset
+    if (_player.position.y > 200.0f) {
+        _backgroundNode.position = CGPointMake(0.0f, -((_player.position.y - 200.0f)/10));
+        _midgroundNode.position = CGPointMake(0.0f, -((_player.position.y - 200.0f)/4));
+        _foregroundNode.position = CGPointMake(0.0f, -(_player.position.y - 200.0f));
+    }
+}
 
 @end
