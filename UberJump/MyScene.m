@@ -46,6 +46,10 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         _backgroundNode = [self createBackgroundNode];
         [self addChild:_backgroundNode];
         
+        // Midground
+        _midgroundNode = [self createMidgroundNode];
+        [self addChild:_midgroundNode];
+        
         // Foreground
         _foregroundNode = [SKNode node];
         [self addChild:_foregroundNode];
@@ -276,6 +280,32 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     if (updateHUD) {
         // 4 TODO: Update HUD in Part 2
     }
+}
+
+- (SKNode *)createMidgroundNode
+{
+    // Create the node
+    SKNode *midgroundNode = [SKNode node];
+    
+    // 1
+    // Add some branches to the midground
+    for (int i=0; i<10; i++) {
+        NSString *spriteName;
+        // 2
+        int r = arc4random() % 2;
+        if (r > 0) {
+            spriteName = @"BranchRight";
+        } else {
+            spriteName = @"BranchLeft";
+        }
+        // 3
+        SKSpriteNode *branchNode = [SKSpriteNode spriteNodeWithImageNamed:spriteName];
+        branchNode.position = CGPointMake(160.0f, 500.0f * i);
+        [midgroundNode addChild:branchNode];
+    }
+    
+    // Return the completed background node
+    return midgroundNode;	
 }
 
 
