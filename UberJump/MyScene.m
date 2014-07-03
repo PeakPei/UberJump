@@ -62,6 +62,8 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         
         // Reset
         _maxPlayerY = 80;
+        [GameState sharedInstance].score = 0;
+        _gameOver = NO;
         
         // Create the game nodes
         // Background
