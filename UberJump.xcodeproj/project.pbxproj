@@ -73,6 +73,7 @@
 		EAD28E2A1965D03B0045DEDA /* PlatformNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E291965D03B0045DEDA /* PlatformNode.m */; };
 		EAD28E2C1965D1220045DEDA /* Level01.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAD28E2B1965D1220045DEDA /* Level01.plist */; };
 		EAD28E2F1965D5200045DEDA /* GameState.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E2E1965D5200045DEDA /* GameState.m */; };
+		EAD28E321965D8750045DEDA /* EndGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD28E311965D8750045DEDA /* EndGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,8 @@
 		EAD28E2B1965D1220045DEDA /* Level01.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Level01.plist; sourceTree = "<group>"; };
 		EAD28E2D1965D5200045DEDA /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		EAD28E2E1965D5200045DEDA /* GameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameState.m; sourceTree = "<group>"; };
+		EAD28E301965D8750045DEDA /* EndGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndGameScene.h; sourceTree = "<group>"; };
+		EAD28E311965D8750045DEDA /* EndGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +247,8 @@
 				EAD28E291965D03B0045DEDA /* PlatformNode.m */,
 				EAD28E2D1965D5200045DEDA /* GameState.h */,
 				EAD28E2E1965D5200045DEDA /* GameState.m */,
+				EAD28E301965D8750045DEDA /* EndGameScene.h */,
+				EAD28E311965D8750045DEDA /* EndGameScene.m */,
 			);
 			path = UberJump;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD28E2A1965D03B0045DEDA /* PlatformNode.m in Sources */,
+				EAD28E321965D8750045DEDA /* EndGameScene.m in Sources */,
 				EAD28E2F1965D5200045DEDA /* GameState.m in Sources */,
 				EAD28E221965CB880045DEDA /* GameObjectNode.m in Sources */,
 				EAD28DA81964D1890045DEDA /* MyScene.m in Sources */,

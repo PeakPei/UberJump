@@ -9,6 +9,7 @@
 #import "MyScene.h"
 #import "StarNode.h"
 #import "PlatformNode.h"
+#import "EndGameScene.h"
 @import CoreMotion;
 
 typedef NS_OPTIONS(uint32_t, CollisionCategory) {
@@ -46,6 +47,9 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
     
     // Max y reached by player
     int _maxPlayerY;
+    
+    // Game over dude !
+    BOOL _gameOver;
 }
 @end
 
@@ -372,6 +376,8 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
 
 - (void) update:(CFTimeInterval)currentTime {
     
+    if (_gameOver) return;
+    
     // New max height ?
     // 1
     if ((int)_player.position.y > _maxPlayerY) {
@@ -397,6 +403,18 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         _midgroundNode.position = CGPointMake(0.0f, -((_player.position.y - 200.0f)/4));
         _foregroundNode.position = CGPointMake(0.0f, -(_player.position.y - 200.0f));
     }
+    
+    // 1
+    // Check if we've finished the level
+    if (_player.position.y > _endLevelY) {
+        [self endGame];
+    }
+    
+    // 2
+    // Check if we've fallen too far
+    if (_player.position.y < (_maxPlayerY - 400)) {
+        [self endGame];
+    }
 }
 
 - (void) didSimulatePhysics
@@ -413,6 +431,21 @@ typedef NS_OPTIONS(uint32_t, CollisionCategory) {
         _player.position = CGPointMake(-20.0f, _player.position.y);
     }
     return;
+}
+
+- (void) endGame
+{
+    // 1
+    _gameOver = YES;
+    
+    // 2
+    // Save stars and high score
+    [[GameState sharedInstance] saveState];
+    
+    // 3
+    SKScene *endGameScene = [[EndGameScene alloc] initWithSize:self.size];
+    SKTransition *reveal = [SKTransition fadeWithDuration:0.5];
+    [self.view presentScene:endGameScene transition:reveal];
 }
 
 @end
